@@ -19,7 +19,7 @@ import sys
 # Visa  205.96
 # Cash  455.51
 
-# Sum of all sales (values) is initialized with zero, we just started
+# Sum of all sales (values) is initialized with zero, we just started
 count = 0
 
 # Previous key is initialized with None, we just started
@@ -35,17 +35,18 @@ for line in sys.stdin:
 
     # Store the 2 elements of this line in seperate variables
     key = data[0]
-
+  #  value = int(data[1])
     # Do we have a previous_key (previous_key != None) and 
     # is the new key different than the previous key?
     # This means the line starts with a new key (key changes e.g. from "Visa" to "Cash")
     # Remember that our keys are sorted
-    if previous_key != None and previous_key != key:
+    if previous_key is not None and previous_key != key:
+	if count > 114:
         # Then write the result of the old key (Key=category, Value= Sum of Sales)
         # to the standart output (stdout)
         # Key and value are seperated by a tab (\t)
         # Line ends with new line (\n)
-        sys.stdout.write("{0}\t{1}\n".format(previous_key, count))
+		sys.stdout.write("{0}\t{1}\n".format(previous_key, count))
         # Sum of sales starts again with 0
         count = 0
 
@@ -56,6 +57,6 @@ for line in sys.stdin:
     count += 1
     # the previous key for the next iteration is the current key of the this iteration 
     previous_key = key
-
-# write the last result to stdout
-sys.stdout.write("{0}\t{1}\n".format(previous_key, count))
+if count > 114:
+# write the last result to 
+	sys.stdout.write("{0}\t{1}\n".format(previous_key, count))
